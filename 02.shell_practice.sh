@@ -101,4 +101,23 @@ else
 	echo $NUMBER is less than 100
 fi #if closing block
 
+echo -e "\n"
 
+#installation based on user access permissions check
+
+USERID=$(id -u)
+
+if [ $USERID -ne 0 ]; then
+	echo "please run with root user access"
+	exit 1
+fi
+
+echo "install nginx"
+dnf install nginx -y
+
+if [ $? -ne 0 ]; then
+	echo "installation of nginx failed...."
+	exit 1
+else
+	echo "installation of nginx success"
+fi
