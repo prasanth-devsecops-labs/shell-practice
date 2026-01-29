@@ -1,6 +1,22 @@
 #!bin/bash
 
-set -e
+set -euxo pipefail
+
+# -e (errexit): Tells the shell to exit immediately if any command returns a non-zero (failure) status. This prevents a script from continuing after a silent failure.
+
+# -u (nounset): Treats unset variables as an error when performing parameter expansion. If you try to use a variable that hasn't been defined, the script will exit with an error message instead of treating it as an empty string.
+
+# -x (xtrace): Enables execution tracing (debugging mode). It prints each command and its expanded arguments to standard error before executing them, which is invaluable for troubleshooting.
+
+# -o pipefail
+# To make the script even more robust, it is often paired with -o pipefail. By default, a pipeline (e.g., cmd1 | cmd2) only returns the exit status of the last command. With pipefail, the whole pipeline fails if any command within it fails.
+
+
+trap 'commands_to_run' SIGNAL_NAMES
+
+# The trap command is a shell built-in used in Linux scripts to catch and respond to signals sent to the process. It is primarily used for resource cleanup (e.g., deleting temporary files) and ensuring a script exits gracefully even if interrupted. 
+
+
 
 LOGS_FOLDER="/var/log/shell-practice"
 LOG_FILE="${LOGS_FOLDER}/$0.log"
@@ -45,3 +61,5 @@ do
         echo "$package installated.. skipping" 
     if 
 done
+
+
