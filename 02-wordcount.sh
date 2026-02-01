@@ -27,5 +27,3 @@ read lines words chars rest < <(wc "$FILE")
 echo "Lines : $lines"
 echo "Words : $words"
 echo "chars : $chars"
-
-echo "resr  : $rest"
