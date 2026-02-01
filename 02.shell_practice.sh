@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 
 
 ## variables with hardcode values
@@ -20,6 +20,7 @@ echo all args passed to script : $@
 echo number of args passed to script : $#
 echo current user : $USER
 echo current user home directory path : $HOME
+echo present work dir : $PWD
 echo process id of scriot : $$
 sleep 8 &
 echo recent background process id : $!
