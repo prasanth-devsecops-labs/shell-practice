@@ -13,5 +13,5 @@ cat "$FILE" | \
     grep -v '^$' | \
     sort | \
     uniq -c | \
-    sort -nr | \
+    sort -rn | \
     head -5
