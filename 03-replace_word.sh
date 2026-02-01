@@ -8,5 +8,5 @@ echo "success...."
 
 
 for f in $(find $SEACRHDIR -type f -name "passwd"); do
-    sed 's/sbin/SBIN/g' $f | diff -u --color=always "$f" -
+    sed 's/sbin/SBIN/g' $f | diff -u "$f" - | diff-highlight
 done
