@@ -15,7 +15,7 @@ if [ -e $TARGET ]; then
     [ -r $TARGET ] && echo "readable" || echo "not readable"
     [ -w $TARGET ] && echo "writable" || echo "not writable"
 
-    if [ -d $ $TARGET ]; then
+    if [ -d $TARGET ]; then
         echo "this is directory listing contents"
         ls -F $TARGET
     fi
