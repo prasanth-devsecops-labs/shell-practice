@@ -44,10 +44,12 @@ fi
 
 if [ ! -d "$SOURCE_DIR" ]; then
     log "Source directory : $SOURCE_DIR does not exists"
+    exit 1
 fi
 
 if [ ! -d "$DEST_DIR" ]; then
     log "Destination directory : $DEST_DIR does not exists"
+    exit 1
 fi
 
 FILES=$(find "$SOURCE_DIR" -name "*.log" -type f -mtime +"$DAYS")
