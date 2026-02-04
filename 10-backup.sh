@@ -60,7 +60,7 @@ log "Destination directory :  $DEST_DIR"
 log "Days : $DAYS"
 
 if [ -z "$FILES" ]; then
-    log "no filesto archive... skipping"
+    log "no files to archive... skipping"
 else
     log "Files found to archive : $FILES"
     TIME_STAMP=$(date "+%Y-%m-%d-%H:%M:%S")
