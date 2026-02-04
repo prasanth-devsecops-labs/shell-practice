@@ -25,7 +25,7 @@ DEST_DIR=$2
 DAYS=${3:-14}
 
 log() {
-    echo -e "$(date "+%Y-%m-%d %H:%M:%S") $1" | tee -a $LOG_FILE
+    echo -e "$(date "+%Y-%m-%d-%H:%M:%S") $1" | tee -a $LOG_FILE
 }
 
 USAGE() {
@@ -63,10 +63,10 @@ if [ -z "$FILES" ]; then
     log "no filesto archive... skipping"
 else
     log "Files found to archive : $FILES"
-    TIME_STAMP=$(date "+%Y-%m-%d %H:%M:%S")
+    TIME_STAMP=$(date "+%Y-%m-%d-%H:%M:%S")
     ZIP_FILE_NAME="$DEST_DIR/applogs_$TIME_STAMP.tar,gz"
 
-    tar -zcvf "$ZIP_FILE_NAME" "$FILES"
+    tar -zcvf "$ZIP_FILE_NAME" $(find "$SOURCE_DIR" -name "*.log" -type f -mtime +"$DAYS")
 
     if [ -f "$ZIP_FILE_NAME" ]; then
         log "Archival success..."
