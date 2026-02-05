@@ -84,36 +84,65 @@ Command Mode (Colon)
 ### 5. 👤 Identity & Access Management (IAM)
 
 User & Group Basics
+
 useradd / userdel -r : Create or delete (with home dir) users.
+
 usermod -aG group user : Add user to a group without removing existing ones.
+
 chown -R user:group <path> : Change ownership recursively.
+
 Onboarding a New Employee (The DevSecOps Way)
+
 Keys: User sends id_rsa.pub (Public Key) to Admin.
+
 Home Setup: Admin creates user; Linux creates /home/user.
+
 SSH Directory: Create .ssh/ folder (Perms: 700).
+
 Authorized Keys: Create .ssh/authorized_keys (Perms: 600).
+
 Sudo Access: Create file in /etc/sudoers.d/devsecops:
+
 Content: %devsecops ALL=(ALL) NOPASSWD: ALL
+
 Ownership: chown -R user:user /home/user/.ssh
+
 
 ### 6. 📦 System Administration
 
 Package & Service Management
+
 RHEL/CentOS: dnf install / dnf list installed.
+
 Ubuntu/Debian: apt update && apt install.
+
 Services: systemctl enable --now <service> (Enables and Starts in one command).
 
+
 ### Networking & Processes
+
 netstat -lntp / ss -tulnp : View listening ports and which PID owns them.
+
 ps -ef | grep <proc> : Find a running process.
+
 kill -9 <PID> : Force kill a stuck process.
+
 top : Real-time system resource monitor.
+
 Archiving (The Right Way)
+
 Compress: tar -zcvf archive.tar.gz /path/to/files
+
 Extract: tar -zxvf archive.tar.gz
+
 Note: If archiving from a variable list, use xargs to avoid "Argument list too long" errors.
 
+
 ### ⏰ Cron Job Best Practices
+
 Always use absolute paths: /usr/local/bin/script.sh.
+
 Universal Redirection: * * * * * /path/script.sh >> /path/log.txt 2>&1.
+
 Root Crontab: Use sudo crontab -e to run tasks that require sudo privileges.
+
