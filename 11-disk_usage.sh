@@ -31,3 +31,4 @@ while IFS= read line; do
         log "High disk usage on : $PARTITION : $USAGE"
     fi
 done <<< $DISK_USAGE
+
