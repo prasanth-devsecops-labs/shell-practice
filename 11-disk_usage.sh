@@ -28,6 +28,6 @@ while IFS= read line; do
     USAGE=$(echo $line | awk '{print $6}' | cut -d "%" -f1)
     PARTITION=$(echo $line | awk '{print $7}')
     if [ "$USAGE" -gt "$THRESHOLD" ]; then
-        log "disk usage : $USAGE is excedded from threshold level : $THRESHOLD : at $PARTITION"
+        log "High disk usage on : $PARTITION : $USAGE"
     fi
 done <<< $DISK_USAGE
