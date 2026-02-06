@@ -26,15 +26,16 @@ log() {
 
 DISK_USAGE=$(df -hT | grep -v Filesystem)
 
-MESSAGE=$(echo "$DISK_USAGE" | awk -v thresh=$THRESHOLD '$5+0 >= thresh {printf "<b>%s</b>: %s<br>", $6, $5}')
+# tTODO: check again  
+# MESSAGE=$(echo "$DISK_USAGE" | awk -v thresh=$THRESHOLD '$5+0 >= thresh {printf "<b>%s</b>: %s<br>", $6, $5}')
 
 
-# while IFS= read line; do
-#     USAGE=$(echo $line | awk '{print $6}' | cut -d "%" -f1)
-#     PARTITION=$(echo $line | awk '{print $7}')
-#     if [ "$USAGE" -gt "$THRESHOLD" ]; then
-#         MESSAGE+="<b>$PARTITION</b>: $USAGE% usage<br>"
-#     fi
-# done <<< $DISK_USAGE
+while IFS= read line; do
+    USAGE=$(echo $line | awk '{print $6}' | cut -d "%" -f1)
+    PARTITION=$(echo $line | awk '{print $7}')
+    if [ "$USAGE" -gt "$THRESHOLD" ]; then
+        MESSAGE+="<b>$PARTITION</b>: $USAGE% usage<br>"
+    fi
+done <<< $DISK_USAGE
 
 sh mail.sh "prasanthreddy1792@gmail.com" "High disk usage alert on $IP_ADDRESS" "$MESSAGE" "HIGH_DISK_USAGE" "$IP_ADDRESS" "DEVOPS Team"
